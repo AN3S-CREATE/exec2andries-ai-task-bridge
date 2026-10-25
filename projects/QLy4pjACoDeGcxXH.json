@@ -1,0 +1,467 @@
+{
+  "root": {
+    "type": "root",
+    "children": [
+      {
+        "type": "text",
+        "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+        "text": {
+          "ops": [
+            {
+              "insert": "Exec2Andries Task Dashboard"
+            },
+            {
+              "insert": "\n",
+              "attributes": {
+                "paragraph": true
+              }
+            }
+          ]
+        },
+        "format": null,
+        "collapsed": false,
+        "completed": false,
+        "children": [
+          {
+            "type": "text",
+            "id": "8251234d-917f-4e44-9de5-d380661dcc62",
+            "text": {
+              "ops": [
+                {
+                  "insert": "Welcome to Exec2Andries AI Task Bridge",
+                  "attributes": {}
+                },
+                {
+                  "insert": "\n",
+                  "attributes": {
+                    "paragraph": true
+                  }
+                }
+              ]
+            },
+            "format": {
+              "node": "h1",
+              "children": null
+            },
+            "collapsed": false,
+            "completed": false,
+            "children": [
+              {
+                "type": "text",
+                "id": "1234567d-917f-4e44-9de5-d380661dcc62",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "Sample Task: Review Q4 marketing strategy and provide recommendations",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": true,
+                "attributes": {
+                  "@cat01": {
+                    "type": "Select",
+                    "optionId": "marketing"
+                  },
+                  "@stat1": {
+                    "type": "Select",
+                    "optionId": "pending"
+                  },
+                  "@prio1": {
+                    "type": "Select",
+                    "optionId": "high"
+                  },
+                  "@assg1": "@andries-lieb",
+                  "@tags1": "strategy, review, Q4",
+                  "@impt1": {
+                    "type": "Select",
+                    "optionId": "high"
+                  },
+                  "@desc1": "Comprehensive review of current marketing initiatives and strategic recommendations for Q4 execution"
+                },
+                "children": []
+              },
+              {
+                "type": "text",
+                "id": "5eddbde1-721f-4850-8e0d-4aa48a160106",
+                "text": {
+                  "ops": [
+                    {
+                      "insert": "🧪 TEST: Implemented AI-powered customer segmentation using machine learning algorithms",
+                      "attributes": {}
+                    },
+                    {
+                      "insert": "\n",
+                      "attributes": {
+                        "paragraph": true
+                      }
+                    }
+                  ]
+                },
+                "format": {
+                  "node": "checkbox",
+                  "children": null
+                },
+                "collapsed": false,
+                "completed": true,
+                "attributes": {
+                  "@cat01": {
+                    "type": "Select",
+                    "optionId": "ai-systems"
+                  },
+                  "@stat1": {
+                    "type": "Select",
+                    "optionId": "in-progress"
+                  },
+                  "@prio1": {
+                    "type": "Select",
+                    "optionId": "medium"
+                  },
+                  "@assg1": "Andries Liebenberg",
+                  "@tags1": "machine-learning, customer-segmentation, ai-implementation, data-analysis",
+                  "@impt1": {
+                    "type": "Select",
+                    "optionId": "high"
+                  },
+                  "@desc1": "Successfully implemented a machine learning model for customer segmentation that improved targeting accuracy by 35%. Used Python, scikit-learn, and customer behavioral data to create 5 distinct customer personas. This represents a significant advancement in AI systems implementation and data-driven marketing strategies."
+                },
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "views": {
+      "table": {
+        "id": "table",
+        "type": "table",
+        "rank": "V",
+        "columns": {
+          "/text": {
+            "id": "/text",
+            "fieldPath": "/text",
+            "rank": "7",
+            "width": 480
+          },
+          "/attributes/agent": {
+            "id": "/attributes/agent",
+            "fieldPath": "/attributes/agent",
+            "rank": "A",
+            "hidden": true
+          },
+          "/attributes/date": {
+            "id": "/attributes/date",
+            "fieldPath": "/attributes/date",
+            "rank": "F"
+          },
+          "/attributes/assignee": {
+            "id": "/attributes/assignee",
+            "fieldPath": "/attributes/assignee",
+            "rank": "N"
+          },
+          "/attributes/comment": {
+            "id": "/attributes/comment",
+            "fieldPath": "/attributes/comment",
+            "rank": "V",
+            "hidden": true
+          },
+          "/attributes/reaction": {
+            "id": "/attributes/reaction",
+            "fieldPath": "/attributes/reaction",
+            "rank": "c",
+            "hidden": true
+          },
+          "/attributes/timer": {
+            "id": "/attributes/timer",
+            "fieldPath": "/attributes/timer",
+            "rank": "k",
+            "hidden": true
+          },
+          "/attributes/media": {
+            "id": "/attributes/media",
+            "fieldPath": "/attributes/media",
+            "rank": "s",
+            "hidden": true
+          },
+          "/attributes/created/at": {
+            "id": "/attributes/created/at",
+            "fieldPath": "/attributes/created/at",
+            "rank": "t",
+            "hidden": true
+          },
+          "/attributes/created/by": {
+            "id": "/attributes/created/by",
+            "fieldPath": "/attributes/created/by",
+            "rank": "u",
+            "hidden": true
+          },
+          "/attributes/updated/at": {
+            "id": "/attributes/updated/at",
+            "fieldPath": "/attributes/updated/at",
+            "rank": "vF",
+            "hidden": true
+          },
+          "/attributes/updated/by": {
+            "id": "/attributes/updated/by",
+            "fieldPath": "/attributes/updated/by",
+            "rank": "wF",
+            "hidden": true
+          },
+          "/attributes/completed/at": {
+            "id": "/attributes/completed/at",
+            "fieldPath": "/attributes/completed/at",
+            "rank": "x",
+            "hidden": true
+          },
+          "/attributes/completed/by": {
+            "id": "/attributes/completed/by",
+            "fieldPath": "/attributes/completed/by",
+            "rank": "y",
+            "hidden": true
+          },
+          "/attributes/@cat01": {
+            "id": "/attributes/@cat01",
+            "fieldPath": "/attributes/@cat01",
+            "rank": "z",
+            "hidden": false
+          },
+          "/attributes/@stat1": {
+            "id": "/attributes/@stat1",
+            "fieldPath": "/attributes/@stat1",
+            "rank": "zV",
+            "hidden": false
+          },
+          "/attributes/@prio1": {
+            "id": "/attributes/@prio1",
+            "fieldPath": "/attributes/@prio1",
+            "rank": "zk",
+            "hidden": false
+          },
+          "/attributes/@due01": {
+            "id": "/attributes/@due01",
+            "fieldPath": "/attributes/@due01",
+            "rank": "zs",
+            "hidden": false
+          },
+          "/attributes/@assg1": {
+            "id": "/attributes/@assg1",
+            "fieldPath": "/attributes/@assg1",
+            "rank": "zw",
+            "hidden": false
+          },
+          "/attributes/@tags1": {
+            "id": "/attributes/@tags1",
+            "fieldPath": "/attributes/@tags1",
+            "rank": "zy",
+            "hidden": false
+          },
+          "/attributes/@impt1": {
+            "id": "/attributes/@impt1",
+            "fieldPath": "/attributes/@impt1",
+            "rank": "zz",
+            "hidden": false
+          },
+          "/attributes/@desc1": {
+            "id": "/attributes/@desc1",
+            "fieldPath": "/attributes/@desc1",
+            "rank": "zzV",
+            "hidden": false
+          }
+        }
+      }
+    },
+    "fields": {
+      "@cat01": {
+        "type": "Select",
+        "displayName": "Category",
+        "options": {
+          "sales": {
+            "id": "sales",
+            "name": "Sales",
+            "color": "#10B981",
+            "rank": "0"
+          },
+          "marketing": {
+            "id": "marketing",
+            "name": "Marketing",
+            "color": "#3B82F6",
+            "rank": "1"
+          },
+          "business-growth": {
+            "id": "business-growth",
+            "name": "Business Growth",
+            "color": "#8B5CF6",
+            "rank": "2"
+          },
+          "onboarding": {
+            "id": "onboarding",
+            "name": "Onboarding",
+            "color": "#F59E0B",
+            "rank": "3"
+          },
+          "training": {
+            "id": "training",
+            "name": "Training",
+            "color": "#EF4444",
+            "rank": "4"
+          },
+          "mentorship": {
+            "id": "mentorship",
+            "name": "Mentorship",
+            "color": "#06B6D4",
+            "rank": "5"
+          },
+          "innovation": {
+            "id": "innovation",
+            "name": "Innovation",
+            "color": "#EC4899",
+            "rank": "6"
+          },
+          "events": {
+            "id": "events",
+            "name": "Events",
+            "color": "#84CC16",
+            "rank": "7"
+          },
+          "ai-systems": {
+            "id": "ai-systems",
+            "name": "AI Systems",
+            "color": "#6366F1",
+            "rank": "8"
+          }
+        }
+      },
+      "@stat1": {
+        "type": "Select",
+        "displayName": "Status",
+        "options": {
+          "pending": {
+            "id": "pending",
+            "name": "Pending",
+            "color": "#F59E0B",
+            "rank": "0"
+          },
+          "in-progress": {
+            "id": "in-progress",
+            "name": "In Progress",
+            "color": "#3B82F6",
+            "rank": "1"
+          },
+          "review": {
+            "id": "review",
+            "name": "Under Review",
+            "color": "#8B5CF6",
+            "rank": "2"
+          },
+          "completed": {
+            "id": "completed",
+            "name": "Completed",
+            "color": "#10B981",
+            "rank": "3"
+          },
+          "blocked": {
+            "id": "blocked",
+            "name": "Blocked",
+            "color": "#EF4444",
+            "rank": "4"
+          }
+        }
+      },
+      "@prio1": {
+        "type": "Select",
+        "displayName": "Priority",
+        "options": {
+          "low": {
+            "id": "low",
+            "name": "Low",
+            "color": "#6B7280",
+            "rank": "0"
+          },
+          "medium": {
+            "id": "medium",
+            "name": "Medium",
+            "color": "#F59E0B",
+            "rank": "1"
+          },
+          "high": {
+            "id": "high",
+            "name": "High",
+            "color": "#EF4444",
+            "rank": "2"
+          },
+          "urgent": {
+            "id": "urgent",
+            "name": "Urgent",
+            "color": "#DC2626",
+            "rank": "3"
+          }
+        }
+      },
+      "@due01": {
+        "type": "DateTime",
+        "title": "Deadline"
+      },
+      "@assg1": {
+        "type": "string",
+        "displayName": "Assignee"
+      },
+      "@tags1": {
+        "type": "string",
+        "displayName": "Tags"
+      },
+      "@impt1": {
+        "type": "Select",
+        "displayName": "Impact",
+        "options": {
+          "low": {
+            "id": "low",
+            "name": "Low Impact",
+            "color": "#6B7280",
+            "rank": "0"
+          },
+          "medium": {
+            "id": "medium",
+            "name": "Medium Impact",
+            "color": "#F59E0B",
+            "rank": "1"
+          },
+          "high": {
+            "id": "high",
+            "name": "High Impact",
+            "color": "#EF4444",
+            "rank": "2"
+          },
+          "critical": {
+            "id": "critical",
+            "name": "Critical Impact",
+            "color": "#DC2626",
+            "rank": "3"
+          }
+        }
+      },
+      "@desc1": {
+        "type": "string",
+        "displayName": "Description"
+      }
+    }
+  },
+  "preferences": {
+    "defaultView": "list",
+    "avatar": {
+      "type": "emoji",
+      "value": "🗒️"
+    }
+  }
+}

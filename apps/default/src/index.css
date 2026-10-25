@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mobile PWA Enhancements */
+@layer utilities {
+  /* Smooth touch animations */
+  .touch-active {
+    @apply active:scale-95 transition-transform duration-150;
+  }
+  
+  /* Slide up animation for mobile prompts */
+  @keyframes slide-up {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+  
+  /* Haptic feedback simulation */
+  .haptic-tap {
+    @apply active:brightness-90 transition-all duration-100;
+  }
+  
+  /* Pull to refresh indicator */
+  @keyframes pull-refresh {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(4px);
+    }
+  }
+  
+  .animate-pull-refresh {
+    animation: pull-refresh 1s ease-in-out infinite;
+  }
+  
+  /* Mobile safe area support */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Touch-friendly button sizes */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Disable pull-to-refresh on iOS when at top of scroll */
+  body {
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Fix for iOS input zoom */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Android-specific fixes */
+@media (hover: none) and (pointer: coarse) {
+  /* Better tap targets for touch devices */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"] {
+    @apply touch-target;
+  }
+}

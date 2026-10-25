@@ -1,0 +1,203 @@
+{
+  "version": "2",
+  "flowTitle": "Auto Knowledge Base Updater",
+  "trigger": {
+    "valid": false,
+    "displayName": "When Task is Completed",
+    "type": "PIECE_TRIGGER",
+    "settings": {
+      "pieceName": "@taskade/automade-internalpiece-taskade",
+      "pieceVersion": "1.0.0",
+      "triggerName": "task.completed",
+      "input": {
+        "projectId": {
+          "type": "flow-template-variable-input-type",
+          "id": "QLy4pjACoDeGcxXH"
+        }
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "01K5E0N6JCSZY2HTHN4SBT2VC7",
+      "valid": true,
+      "displayName": "Analyze Task for Learning Opportunities",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.ask",
+        "input": {
+          "input": "",
+          "prompt": "You are Andries' AI assistant analyzing completed tasks for knowledge base updates. Analyze this completed task and determine if it represents new skills, achievements, experiences, or expertise that should be added to his knowledge base.\n\nTask Details:\n- Title: ${trigger[\"nodeText\"]}\n- Description: ${trigger[\"nodeNote\"]}\n- Completed by: ${trigger[\"completedBy\"]}\n- Completed at: ${trigger[\"completedAt\"]}\n- Project: ${trigger[\"projectTitle\"]}\n\nAnalyze and respond with JSON format:\n{\n  \"shouldUpdate\": true/false,\n  \"knowledgeType\": \"skill|achievement|experience|expertise|stat\",\n  \"category\": \"sales|marketing|business-growth|training|ai-systems|leadership|general\",\n  \"title\": \"Brief title for knowledge entry\",\n  \"description\": \"Detailed description of what was learned/achieved\",\n  \"proficiencyLevel\": 0.75,\n  \"tags\": \"relevant,tags,separated,by,commas\",\n  \"reasoning\": \"Why this should/shouldn't be added to knowledge base\"\n}"
+        }
+      }
+    },
+    {
+      "name": "01K5E0N6JCSZY2HTHN4SBT2VC8",
+      "valid": true,
+      "displayName": "Check if Knowledge Update Needed",
+      "type": "BRANCH",
+      "settings": {},
+      "paths": [
+        {
+          "name": "01K5E0N6JCSZY2HTHN4SBT2VC9",
+          "valid": true,
+          "displayName": "Update Knowledge Base",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "CUSTOM",
+              "input": {
+                "type": "or",
+                "value": [
+                  {
+                    "type": "and",
+                    "value": [
+                      {
+                        "condition": "text_contains",
+                        "id": "89f6aea8-7079-4a1d-bf55-eb76f96d2878",
+                        "data": "{{ 01K5E0N6JCSZY2HTHN4SBT2VC7[\"result\"] }}",
+                        "comparator": "\"shouldUpdate\": true"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "actions": [
+            {
+              "name": "01K5E0N6JCSZY2HTHN4SBT2VCC",
+              "valid": true,
+              "displayName": "Log Knowledge Update",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-openai",
+                "pieceVersion": "1.0.0",
+                "actionName": "ai.ask",
+                "input": {
+                  "input": "Knowledge added from completed task: {{ trigger[\"nodeText\"] }} - {{ 01K5E0N6JCSZY2HTHN4SBT2VCA[\"result\"] }}",
+                  "prompt": "Create a brief summary log of this knowledge base update for Andries' records."
+                }
+              }
+            },
+            {
+              "name": "01K5E0N6JCSZY2HTHN4SBT2VCF",
+              "valid": true,
+              "displayName": "Create Knowledge Entry",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-openai",
+                "pieceVersion": "1.0.0",
+                "actionName": "ai.ask",
+                "input": {
+                  "input": "{{ 01K5E0N6JCSZY2HTHN4SBT2VC7[\"result\"] }}",
+                  "prompt": "Based on the analysis, create a knowledge base entry. Extract the title from the JSON analysis and create a proper knowledge entry.\n\nFormat the response as a clean title for the knowledge base entry:"
+                }
+              }
+            },
+            {
+              "name": "01K5E0N6JCSZY2HTHN4SBT2VCG",
+              "valid": false,
+              "displayName": "Add to Knowledge Base",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-taskade",
+                "pieceVersion": "1.0.0",
+                "actionName": "task.create",
+                "input": {
+                  "fields": {
+                    "@cat02": {
+                      "data": {
+                        "value": "general"
+                      },
+                      "rank": "1",
+                      "fieldId": "@cat02"
+                    },
+                    "@date1": {
+                      "data": {
+                        "value": "{{ trigger[\"completedAt\"] }}"
+                      },
+                      "rank": "4",
+                      "fieldId": "@date1"
+                    },
+                    "@desc2": {
+                      "data": {
+                        "value": "Auto-added from completed task: {{ trigger[\"nodeText\"] }} - {{ trigger[\"nodeNote\"] }}"
+                      },
+                      "rank": "2",
+                      "fieldId": "@desc2"
+                    },
+                    "@tags2": {
+                      "data": {
+                        "value": "auto-added,task-completion,{{ trigger[\"projectTitle\"] }}"
+                      },
+                      "rank": "3",
+                      "fieldId": "@tags2"
+                    },
+                    "@type1": {
+                      "data": {
+                        "value": "skill"
+                      },
+                      "rank": "0",
+                      "fieldId": "@type1"
+                    }
+                  },
+                  "content": "📚 {{ 01K5E0N6JCSZY2HTHN4SBT2VCF[\"result\"] }}",
+                  "position": "beforeend",
+                  "projectId": {
+                    "type": "flow-template-variable-input-type",
+                    "id": "5wR2NLg3YGHm9vZJ"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "01K5E0N6JCSZY2HTHN4SBT2VCD",
+          "valid": true,
+          "displayName": "No Update Needed",
+          "type": "BRANCH_PATH",
+          "settings": {
+            "ruleset": {
+              "type": "FALLBACK"
+            }
+          },
+          "actions": [
+            {
+              "name": "01K5E0N6JCSZY2HTHN4SBT2VCE",
+              "valid": true,
+              "displayName": "Log No Update",
+              "type": "PIECE",
+              "settings": {
+                "pieceName": "@taskade/automade-internalpiece-openai",
+                "pieceVersion": "1.0.0",
+                "actionName": "ai.ask",
+                "input": {
+                  "input": "Task completed but no knowledge update needed: {{ trigger[\"nodeText\"] }} - Reasoning: {{ 01K5E0N6JCSZY2HTHN4SBT2VC7[\"result\"] }}",
+                  "prompt": "Create a brief note explaining why this completed task didn't warrant a knowledge base update."
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "QLy4pjACoDeGcxXH": {
+      "id": "QLy4pjACoDeGcxXH",
+      "rank": "V",
+      "type": "string",
+      "format": "taskade-project-id"
+    },
+    "5wR2NLg3YGHm9vZJ": {
+      "id": "5wR2NLg3YGHm9vZJ",
+      "rank": "k",
+      "type": "string",
+      "format": "taskade-project-id"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "version": "2",
+  "flowTitle": "Task Structuring Brain",
+  "trigger": {
+    "valid": true,
+    "type": "WEBHOOK",
+    "settings": {
+      "input": {
+        "type": "object",
+        "properties": {
+          "taskAnswers": {
+            "type": "string",
+            "description": "Input for taskAnswers"
+          },
+          "taskDescription": {
+            "type": "string",
+            "description": "Input for taskDescription"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "k47ac10b-58cc-4372-a567-0e02b2c3d486",
+      "valid": true,
+      "displayName": "AI Structure Task with Subtasks",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.ask",
+        "input": {
+          "input": "",
+          "prompt": "You are Andries' AI brain that structures tasks based on his expertise.\n\nTask: {{ trigger[\"taskDescription\"] }}\nAnswers: {{ trigger[\"taskAnswers\"] }}\n\nCreate a comprehensive task breakdown with subtasks, category, priority, tags, and time estimates. Format as JSON with mainTask, subtasks array, category, priority, tags, estimatedDuration, and recommendations."
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "http_response",
+      "body": {
+        "type": "json",
+        "data": {
+          "type": "basic",
+          "payload": [
+            {
+              "success": "true"
+            },
+            {
+              "taskBreakdown": "{{ k47ac10b-58cc-4372-a567-0e02b2c3d486[\"result\"] }}"
+            }
+          ]
+        }
+      },
+      "key": "trigger"
+    }
+  ]
+}

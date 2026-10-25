@@ -1,0 +1,52 @@
+{
+  "version": "2",
+  "flowTitle": "Skills Banner Generator",
+  "trigger": {
+    "valid": true,
+    "type": "WEBHOOK",
+    "settings": {
+      "input": {
+        "type": "object",
+        "properties": {},
+        "additionalProperties": false
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "n47ac10b-58cc-4372-a567-0e02b2c3d489",
+      "valid": true,
+      "displayName": "Generate Skills Banner",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.ask",
+        "input": {
+          "input": "",
+          "prompt": "Generate rotating skills banner content for Andries based on his expertise. Create JSON with skillTips array (title, description, icon, color), recentWins array, and quickStats object (successRate, avgResponseTime, tasksThisMonth, clientSatisfaction). Make it engaging and highlight strengths for better delegation."
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "http_response",
+      "body": {
+        "type": "json",
+        "data": {
+          "type": "basic",
+          "payload": [
+            {
+              "success": "true"
+            },
+            {
+              "bannerData": "{{ n47ac10b-58cc-4372-a567-0e02b2c3d489[\"result\"] }}"
+            }
+          ]
+        }
+      },
+      "key": "trigger"
+    }
+  ]
+}

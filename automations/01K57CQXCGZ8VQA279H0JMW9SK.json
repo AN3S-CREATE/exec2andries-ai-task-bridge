@@ -1,0 +1,84 @@
+{
+  "version": "2",
+  "flowTitle": "Andries Knowledge & Structuring Brain",
+  "trigger": {
+    "valid": true,
+    "type": "WEBHOOK",
+    "settings": {
+      "input": {
+        "type": "object",
+        "properties": {
+          "taskDescription": {
+            "type": "string",
+            "description": "Input for taskDescription"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "h47ac10b-58cc-4372-a567-0e02b2c3d483",
+      "valid": false,
+      "displayName": "Find Task(s)",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "pieceVersion": "1.0.0",
+        "actionName": "tasks.find",
+        "input": {
+          "projectId": {
+            "type": "flow-template-variable-input-type",
+            "id": "5wR2NLg3YGHm9vZJ"
+          },
+          "rowsToReturn": "all_matching_rows",
+          "noTasksFoundBehavior": "continue"
+        }
+      }
+    },
+    {
+      "name": "i47ac10b-58cc-4372-a567-0e02b2c3d484",
+      "valid": true,
+      "displayName": "AI Generate Smart Questions",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "1.0.0",
+        "actionName": "ai.ask",
+        "input": {
+          "input": "",
+          "prompt": "You are Andries' AI assistant with deep knowledge of his expertise. Generate exactly 3 clarifying questions for this task.\n\nTask: {{ trigger[\"taskDescription\"] }}\n\nGenerate 3 questions in JSON format with id, question, type (dropdown/toggle/text), and options if needed."
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "http_response",
+      "body": {
+        "type": "json",
+        "data": {
+          "type": "basic",
+          "payload": [
+            {
+              "success": "true"
+            },
+            {
+              "questions": "{{ i47ac10b-58cc-4372-a567-0e02b2c3d484[\"result\"] }}"
+            }
+          ]
+        }
+      },
+      "key": "trigger"
+    }
+  ],
+  "variables": {
+    "5wR2NLg3YGHm9vZJ": {
+      "id": "5wR2NLg3YGHm9vZJ",
+      "rank": "V",
+      "type": "string",
+      "format": "taskade-project-id"
+    }
+  }
+}

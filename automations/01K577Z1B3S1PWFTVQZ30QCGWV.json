@@ -1,0 +1,223 @@
+{
+  "version": "2",
+  "flowTitle": "Task Processing Workflow",
+  "trigger": {
+    "type": "FORM",
+    "displayName": "Task Intake Form",
+    "settings": {
+      "description": "",
+      "inputs": [
+        {
+          "id": "taskTitle",
+          "title": "Task Title",
+          "description": "Brief description of what needs to be done",
+          "type": "short_text"
+        },
+        {
+          "id": "taskDescription",
+          "title": "Task Details",
+          "description": "Any additional context or requirements",
+          "type": "long_text"
+        },
+        {
+          "id": "priority",
+          "title": "Priority Level",
+          "description": "How urgent is this task?",
+          "type": "static_dropdown",
+          "options": [
+            {
+              "id": "low",
+              "type": "text",
+              "value": "low"
+            },
+            {
+              "id": "medium",
+              "type": "text",
+              "value": "medium"
+            },
+            {
+              "id": "high",
+              "type": "text",
+              "value": "high"
+            },
+            {
+              "id": "urgent",
+              "type": "text",
+              "value": "urgent"
+            }
+          ]
+        },
+        {
+          "id": "category",
+          "title": "Category",
+          "description": "Which area does this task belong to?",
+          "type": "static_dropdown",
+          "options": [
+            {
+              "id": "sales",
+              "type": "text",
+              "value": "sales"
+            },
+            {
+              "id": "marketing",
+              "type": "text",
+              "value": "marketing"
+            },
+            {
+              "id": "business-growth",
+              "type": "text",
+              "value": "business-growth"
+            },
+            {
+              "id": "onboarding",
+              "type": "text",
+              "value": "onboarding"
+            },
+            {
+              "id": "training",
+              "type": "text",
+              "value": "training"
+            },
+            {
+              "id": "mentorship",
+              "type": "text",
+              "value": "mentorship"
+            },
+            {
+              "id": "innovation",
+              "type": "text",
+              "value": "innovation"
+            },
+            {
+              "id": "events",
+              "type": "text",
+              "value": "events"
+            },
+            {
+              "id": "ai-systems",
+              "type": "text",
+              "value": "ai-systems"
+            }
+          ]
+        },
+        {
+          "id": "deadline",
+          "title": "Deadline",
+          "description": "When should this be completed?",
+          "type": "short_text",
+          "format": {
+            "type": "date-time"
+          }
+        }
+      ],
+      "isEndPageEnabled": false
+    }
+  },
+  "actions": [
+    {
+      "name": "f47ac10b-58cc-4372-a567-0e02b2c3d480",
+      "valid": false,
+      "displayName": "Create Task in Dashboard",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "pieceVersion": "1.0.0",
+        "actionName": "task.create",
+        "input": {
+          "fields": {
+            "@assg1": {
+              "data": {
+                "value": "@andries-lieb"
+              },
+              "rank": "3",
+              "fieldId": "@assg1"
+            },
+            "@cat01": {
+              "data": {
+                "value": "{{ trigger[\"category\"] }}"
+              },
+              "rank": "0",
+              "fieldId": "@cat01"
+            },
+            "@desc1": {
+              "data": {
+                "value": "{{ trigger[\"taskDescription\"] }}"
+              },
+              "rank": "6",
+              "fieldId": "@desc1"
+            },
+            "@impt1": {
+              "data": {
+                "value": "medium"
+              },
+              "rank": "5",
+              "fieldId": "@impt1"
+            },
+            "@prio1": {
+              "data": {
+                "value": "{{ trigger[\"priority\"] }}"
+              },
+              "rank": "2",
+              "fieldId": "@prio1"
+            },
+            "@stat1": {
+              "data": {
+                "value": "pending"
+              },
+              "rank": "1",
+              "fieldId": "@stat1"
+            },
+            "@tags1": {
+              "data": {
+                "value": "executive-delegated"
+              },
+              "rank": "4",
+              "fieldId": "@tags1"
+            }
+          },
+          "content": "{{ trigger[\"taskTitle\"] }}",
+          "dueDate": "{{ trigger[\"deadline\"] }}",
+          "position": "beforeend",
+          "projectId": {
+            "type": "flow-template-variable-input-type",
+            "id": "QLy4pjACoDeGcxXH"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "type": "http_response",
+      "body": {
+        "type": "json",
+        "data": {
+          "type": "basic",
+          "payload": [
+            {
+              "success": "true"
+            },
+            {
+              "message": "Task successfully created and assigned to Andries"
+            },
+            {
+              "taskId": "{{ f47ac10b-58cc-4372-a567-0e02b2c3d480[\"nodeId\"] }}"
+            },
+            {
+              "projectLink": "{{ f47ac10b-58cc-4372-a567-0e02b2c3d480[\"projectId\"] }}"
+            }
+          ]
+        }
+      },
+      "key": "trigger"
+    }
+  ],
+  "variables": {
+    "QLy4pjACoDeGcxXH": {
+      "id": "QLy4pjACoDeGcxXH",
+      "rank": "V",
+      "type": "string",
+      "format": "taskade-project-id"
+    }
+  }
+}

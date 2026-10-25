@@ -1,0 +1,409 @@
+{
+  "version": "1",
+  "name": "Andries Knowledge Updater",
+  "commands": [
+    {
+      "id": "13ad58cb-be39-4e41-8534-0763405118f1",
+      "mode": "plan-and-execute-v1",
+      "name": "Andries Johannes Liebenberg",
+      "prompt": "🔧 Search Web  Andries Johannes Liebenberg and add to your Knowledge and Project Knowledge",
+      "isBackgroundJob": false
+    },
+    {
+      "id": "b1e8bb53-7fe2-4894-a14a-909ceee32634",
+      "mode": "plan-and-execute-v1",
+      "name": "Documents with the title Andries Liebenberg",
+      "prompt": "🔧 Find Document  or Documents with the title Andries Liebenberg and ad it to your knowledge and the project knowledge",
+      "isBackgroundJob": false
+    },
+    {
+      "id": "6b3647e1-49c5-46fc-83b1-d99d89f2f053",
+      "mode": "plan-and-execute-v1",
+      "name": "🔧 Upload Text to Media",
+      "prompt": "🔧 Upload Text to Media  add the text text to Knowledge media",
+      "isBackgroundJob": false
+    },
+    {
+      "id": "71346e41-fd53-40d8-9add-139b4351acd7",
+      "mode": "plan-and-execute-v1",
+      "name": "structured",
+      "prompt": "add 📖 Andries Liebenberg Markdown Resume (May 2025).md into structured categorized task in [Andries Knowledge Base] structured 🔧 Taskade Actions",
+      "isBackgroundJob": false
+    }
+  ],
+  "description": "You are Andries' personal knowledge management assistant. Your role is to help Andries update his knowledge base, skills, achievements, and stats that power the Exec2Andries AI Task Bridge system.\n\nWhen Andries shares information with you:\n1. Analyze what type of knowledge it is (skill, achievement, stat, experience, preference)\n2. Determine the category (sales, marketing, training, leadership, etc.)\n3. Extract key details and format them properly\n4. Update the knowledge base via the project API\n5. Confirm the update and explain how it will improve task delegation\n\nYou can help with:\n- Adding new skills and proficiency levels\n- Recording recent achievements and wins\n- Updating performance statistics\n- Managing preferences and working styles\n- Organizing expertise areas\n\nAlways be encouraging and highlight how these updates will help executives delegate more effectively to Andries.",
+  "tone": "inspiring",
+  "introduction": "Hi Andries! 👋 I'm your knowledge management assistant. I help keep your expertise profile up-to-date so the AI Task Bridge can delegate tasks more intelligently.\n\nYou can tell me about:\n✅ New skills you've developed\n🏆 Recent achievements and wins\n📊 Updated performance stats\n💡 Changes in your expertise areas\n🎯 Working preferences\n\nJust share what's new and I'll update your knowledge base instantly!",
+  "conversationStarters": [
+    {
+      "id": "Add New Skill",
+      "text": "Add New Skill",
+      "prompt": "I've developed a new skill in [area] and I'm now at [proficiency level]% proficiency"
+    },
+    {
+      "id": "Record Achievement",
+      "text": "Record Achievement",
+      "prompt": "I just completed [achievement] which resulted in [impact/results]"
+    },
+    {
+      "id": "Update Stats",
+      "text": "Update Stats",
+      "prompt": "My latest performance stats show [metric]: [value] for [time period]"
+    },
+    {
+      "id": "Update Preferences",
+      "text": "Update Preferences",
+      "prompt": "I want to update my working preferences for [type of tasks] to [new preference]"
+    }
+  ],
+  "toolbox": [
+    {
+      "id": "01K59DJMAEJ6363XHKR46HYSH7",
+      "type": "openapi/action",
+      "config": {
+        "path": "DEFAULT",
+        "method": "GET",
+        "servers": [
+          {
+            "url": "https://www.taskade.com/api/v1"
+          }
+        ],
+        "description": "DEFAULT",
+        "operationId": "DEFAULT"
+      },
+      "enabled": true
+    },
+    {
+      "id": "user:01K59DJMAEXGP0HV23AXQBGEJW",
+      "type": "user/automation/action",
+      "enabled": true,
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-media",
+        "actionName": "web.search",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59DJMAEX596VF419ZMYHJDN",
+      "type": "user/automation/action",
+      "enabled": true,
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-media",
+        "actionName": "website.extract",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K57VT9E5Y2W75AHFQX86QC05",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "approve-required",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "actionName": "task.create",
+        "pieceVersion": ""
+      }
+    },
+    {
+      "id": "user:01K59FPDPYE42WH5E4AMV2W837",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "actionName": "googledrive.searchFolderOrFile.v2",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FPDPZHRPWEPZPA1XRER33",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "actionName": "googledrive.createNewFolder",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FPDQ0VY375N2TWE7CGQJX",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "actionName": "googledrive.createNewTextFile",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FPDQ0KYP09JCP3Z8PTSCA",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-piece-google-drive",
+        "actionName": "googledrive.duplicateFile",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FTB304D4RJXNMF23XEKTP",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-piece-google-docs",
+        "actionName": "googledocs.findDocument",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FVB7M0W4EWXVK6V4X8PWX",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "approve-required",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-piece-google-docs",
+        "actionName": "googledocs.createDocument",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FVE0FFZRXMPDS9FV3ZQB5",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "approve-required",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-piece-google-docs",
+        "actionName": "googledocs.appendText",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FW3H6KJ4BERQG51YTW5DR",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "actionName": "ai.ask",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FW3H7W8AYGP50BN267NAQ",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "actionName": "ai.generate",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FW3H7PEYS2W8F5D0MSK5S",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "actionName": "agent.ask",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FW3H7MBVC1J1E3VR38BY9",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "auto-approve",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "actionName": "agent.run_command",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FWED5PK6TV25ZW0PWQAV9",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "approve-required",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-media",
+        "actionName": "pdf.convertToText",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FWFT561FN68MGGZ9B0BKF",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "approve-required",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-media",
+        "actionName": "text.addToMedia",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K59FWH5VBD8S839VGQAFF1ES",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "approve-required",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-media",
+        "actionName": "youtube.transcribeVideo",
+        "pieceVersion": "BLANK"
+      }
+    }
+  ],
+  "addToKnowledgeMediaVariables": [
+    {
+      "id": "6d80247a-924a-4d0c-8ecf-5e39f88c3e80",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "701c1240-939d-4739-9b59-b216898d58ca",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "56f6fd1d-89ea-4aaa-912f-bc2bac4e2d7f",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "6998360d-e935-4ab1-aab6-246272072fcc",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "4dd82ee9-1734-4224-9c99-99d333eabed1",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "946d35e5-cfde-4227-98ed-02efac4c8c1d",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "faecff36-544f-466c-a723-afaf9c29ca18",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "3125782c-3dbd-481a-83c2-29cec7bf95a3",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "aa02df3c-a1e1-4cae-b7db-9ef0285c57cd",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "a63e2d9f-9726-4d6e-9598-d77603347745",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "ed98ddb1-5e5b-419b-a9e9-9bc479602d82",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "ea8131f5-efea-4ad4-9abb-46f68ffff530",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "bad4d90a-5539-4ab3-9c7b-28e8871f8d7e",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "d1bd8d7f-980e-4b97-8669-7e9ac80ea4ec",
+      "type": "agent-template-variable-input-type"
+    }
+  ],
+  "variables": {
+    "6d80247a-924a-4d0c-8ecf-5e39f88c3e80": {
+      "id": "6d80247a-924a-4d0c-8ecf-5e39f88c3e80",
+      "rank": "V",
+      "type": "string"
+    },
+    "701c1240-939d-4739-9b59-b216898d58ca": {
+      "id": "701c1240-939d-4739-9b59-b216898d58ca",
+      "rank": "k",
+      "type": "string"
+    },
+    "56f6fd1d-89ea-4aaa-912f-bc2bac4e2d7f": {
+      "id": "56f6fd1d-89ea-4aaa-912f-bc2bac4e2d7f",
+      "rank": "s",
+      "type": "string"
+    },
+    "6998360d-e935-4ab1-aab6-246272072fcc": {
+      "id": "6998360d-e935-4ab1-aab6-246272072fcc",
+      "rank": "w",
+      "type": "string"
+    },
+    "4dd82ee9-1734-4224-9c99-99d333eabed1": {
+      "id": "4dd82ee9-1734-4224-9c99-99d333eabed1",
+      "rank": "y",
+      "type": "string"
+    },
+    "946d35e5-cfde-4227-98ed-02efac4c8c1d": {
+      "id": "946d35e5-cfde-4227-98ed-02efac4c8c1d",
+      "rank": "z",
+      "type": "string"
+    },
+    "faecff36-544f-466c-a723-afaf9c29ca18": {
+      "id": "faecff36-544f-466c-a723-afaf9c29ca18",
+      "rank": "zV",
+      "type": "string"
+    },
+    "3125782c-3dbd-481a-83c2-29cec7bf95a3": {
+      "id": "3125782c-3dbd-481a-83c2-29cec7bf95a3",
+      "rank": "zk",
+      "type": "string"
+    },
+    "aa02df3c-a1e1-4cae-b7db-9ef0285c57cd": {
+      "id": "aa02df3c-a1e1-4cae-b7db-9ef0285c57cd",
+      "rank": "zs",
+      "type": "string"
+    },
+    "a63e2d9f-9726-4d6e-9598-d77603347745": {
+      "id": "a63e2d9f-9726-4d6e-9598-d77603347745",
+      "rank": "zw",
+      "type": "string"
+    },
+    "ed98ddb1-5e5b-419b-a9e9-9bc479602d82": {
+      "id": "ed98ddb1-5e5b-419b-a9e9-9bc479602d82",
+      "rank": "zy",
+      "type": "string"
+    },
+    "ea8131f5-efea-4ad4-9abb-46f68ffff530": {
+      "id": "ea8131f5-efea-4ad4-9abb-46f68ffff530",
+      "rank": "zz",
+      "type": "string"
+    },
+    "bad4d90a-5539-4ab3-9c7b-28e8871f8d7e": {
+      "id": "bad4d90a-5539-4ab3-9c7b-28e8871f8d7e",
+      "rank": "zzV",
+      "type": "string"
+    },
+    "d1bd8d7f-980e-4b97-8669-7e9ac80ea4ec": {
+      "id": "d1bd8d7f-980e-4b97-8669-7e9ac80ea4ec",
+      "rank": "zzk",
+      "type": "string"
+    }
+  }
+}
